@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 
@@ -22,16 +23,32 @@ const LoginHeading = (props) => {
 };
 
 class LoginForm extends Component {
+  state={
+    username: '',
+    password: ''
+  };
+
+  login = (event) => {
+    event.preventDefault();
+    axios.get('https://jsonplaceholder.typicode.com/todos/1')
+      .then((response) => console.log(response.data));
+    console.log('Clicked');
+  };
+
   render() {
     return (
       <div style={{margin: '10%'}}>
-        <form>
+        <form onSubmit={this.login}>
 
           <div className="form-group">
-            <input className="form-control" placeholder="Username or email" />
+            <input 
+              value={this.state.username} onChange={(event) => this.setState({username: event.target.value})}
+              className="form-control" placeholder="Username or email"
+            />
           </div>
           <div className="form-group">
-            <input className="form-control" placeholder="Password" />
+            <input value={this.state.password} onChange={(event) => this.setState({password: event.target.value})}
+              className="form-control" placeholder="Password" type="password" />
           </div>
 
           <div className="form-group">
@@ -44,7 +61,7 @@ class LoginForm extends Component {
         </form>
       </div>
     );
-  }
+  };
 };
 
 export default App;
