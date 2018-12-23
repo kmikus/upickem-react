@@ -1,10 +1,11 @@
 import React from 'react';
 import '../App.css';
-import { Header } from './Template';
+import { Header, Sidebar } from './Template';
 
 const HomePage = (props) => (
   <div>
     <Header />
+    <Sidebar />
   </div>
 );
 

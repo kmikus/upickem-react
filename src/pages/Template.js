@@ -3,19 +3,19 @@ import '../App.css';
 
 const Header = (props) => (
     <div>
-        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-            <a class="navbar-brand" href="/home">uPickEm</a>
+        <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+            <a className="navbar-brand" href="/home">uPickEm</a>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item">
+                        <a className="nav-link" href="/home">Home <span className="sr-only">(current)</span></a>
                     </li>
                 </ul>
 
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Logout</a>
+                <ul className="navbar-nav ml-auto">
+                    <li className="nav-item">
+                        <a className="nav-link" href="/login">Logout</a>
                     </li>
                 </ul>
 
@@ -24,10 +24,48 @@ const Header = (props) => (
     </div>
 );
 
-const Sidebar = (props) => (
-    <div style={{ borderLeft: "5px solid black" }}>
-        Hello
-    </div>
-);
+const Sidebar = (props) => {
+    const sidebarStyle = {
+        borderLeft: "1px solid #BDBDBD",
+        marginTop: "4%",
+        height: "100%",
+        width: "20%",
+        float: "right",
+        position: "sticky"
+    }
+
+    return (
+        <div style={sidebarStyle}>
+            <h3>Scores</h3>
+            <div>
+                <div style={{ textAlign: "left" }} className="row">
+                    <div className="col">
+                        <ScoreCell homeTeam="BAL" awayTeam="PIT" homeScore="0" awayScore="100" />
+                        <ScoreCell homeTeam="BAL" awayTeam="PIT" homeScore="0" awayScore="100" />
+                        <ScoreCell homeTeam="BAL" awayTeam="PIT" homeScore="0" awayScore="100" />
+                        <ScoreCell homeTeam="BAL" awayTeam="PIT" homeScore="0" awayScore="100" />
+                        <ScoreCell homeTeam="BAL" awayTeam="PIT" homeScore="0" awayScore="100" />
+                        <ScoreCell homeTeam="BAL" awayTeam="PIT" homeScore="0" awayScore="100" />
+                        <ScoreCell homeTeam="BAL" awayTeam="PIT" homeScore="0" awayScore="100" />
+                        <ScoreCell homeTeam="BAL" awayTeam="PIT" homeScore="0" awayScore="100" />
+                        <ScoreCell homeTeam="BAL" awayTeam="PIT" homeScore="0" awayScore="100" />
+                        <ScoreCell homeTeam="BAL" awayTeam="PIT" homeScore="0" awayScore="100" />
+                        <ScoreCell homeTeam="BAL" awayTeam="PIT" homeScore="0" awayScore="100" />
+                        <ScoreCell homeTeam="BAL" awayTeam="PIT" homeScore="0" awayScore="100" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const ScoreCell = (props) => {
+    return (
+        <div style={{ margin: '4%', borderBottom: '1px solid #BDBDBD' }}>
+            <p>{props.homeTeam}<span style={{ float: "right" }}>{props.homeScore}</span></p>
+            <p>{props.awayTeam}<span style={{ float: "right" }}>{props.awayScore}</span></p>
+        </div>
+    );
+}
 
 export { Header, Sidebar };
