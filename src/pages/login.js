@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 import '../App.css';
 
@@ -19,7 +19,7 @@ const LoginHeading = (props) => {
   );
 };
 
-class LoginForm extends Component {
+class LoginForm extends React.Component {
   state = {
     username: '',
     password: ''
