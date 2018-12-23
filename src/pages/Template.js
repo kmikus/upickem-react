@@ -3,7 +3,7 @@ import '../App.css';
 
 const Header = (props) => (
     <div>
-        <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
             <a className="navbar-brand" href="/home">uPickEm</a>
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -28,6 +28,7 @@ const Sidebar = (props) => {
     const sidebarStyle = {
         borderLeft: "1px solid #BDBDBD",
         marginTop: "4%",
+        marginLeft: "10%",
         height: "100%",
         width: "20%",
         float: "right",
