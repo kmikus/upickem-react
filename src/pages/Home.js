@@ -1,11 +1,11 @@
 import React from 'react';
 import '../App.css';
-import { Header, Sidebar } from './Template';
+import { Header } from './Template';
 
 const HomePage = (props) => (
   <div>
     <Header />
-    <div style={{ paddingTop: '7%' }} className="container">
+    <div style={{ paddingTop: '8vh' }} className="container">
       <h2 style={{ marginBottom: '3%' }}>Your Leagues</h2>
       <hr />
       <div className="row">
