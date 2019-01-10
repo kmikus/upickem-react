@@ -1,6 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 import '../App.css';
+import API from '../util/API';
 
 const LoginPage = (props) => {
   return (
@@ -27,10 +27,13 @@ class LoginForm extends React.Component {
 
   login = (event) => {
     event.preventDefault();
-    axios.get('https://jsonplaceholder.typicode.com/todos/1')
-      .then((response) => console.log(response.data));
-    console.log('Clicked');
+    API.login("kevinpmikus@gmail.com", "password");
   };
+
+  register = (event) => {
+    event.preventDefault();
+    API.register("kevinpmikus@gmail.com", "kevin", "mikus", "password", "kmikus");
+  }
 
   render() {
     return (
@@ -53,7 +56,7 @@ class LoginForm extends React.Component {
           </div>
 
           <div className="form-group">
-            <button className="form-control btn btn-outline-secondary">Register</button>
+            <button onClick={this.register} className="form-control btn btn-outline-secondary">Register</button>
           </div>
         </form>
       </div>
