@@ -13,7 +13,7 @@ export default class API {
         });
     }
 
-    static register(email, firstName, lastName, password, username) {
+    static register(firstName, lastName, email, username, password) {
         return instance.post("auth/signup", {
             email: email,
             firstName: firstName,

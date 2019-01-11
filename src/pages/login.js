@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import API from '../util/API';
+import LoginHeading from '../components/LoginHeading'
 
 const LoginPage = (props) => {
   return (
@@ -12,12 +13,6 @@ const LoginPage = (props) => {
     </div>
   )
 }
-
-const LoginHeading = (props) => {
-  return (
-    <h1 className="jumbotron">Welcome to uPickEm</h1>
-  );
-};
 
 class LoginForm extends React.Component {
   state = {
@@ -37,7 +32,7 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div style={{ margin: '10%' }}>
+      <div>
         <form onSubmit={this.login}>
 
           <div className="form-group">
@@ -56,7 +51,7 @@ class LoginForm extends React.Component {
           </div>
 
           <div className="form-group">
-            <button onClick={this.register} className="form-control btn btn-outline-secondary">Register</button>
+            <a href="/register" onClick={this.goToRegisterPage} className="form-control btn btn-outline-secondary">Register</a>
           </div>
         </form>
       </div>
