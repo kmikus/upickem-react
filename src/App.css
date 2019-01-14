@@ -31,8 +31,22 @@
   }
 }
 
-/* .jumbotron {
-  color: #8BC34A;
-  background-color: #303F9F;
-  font-size: 3.0em;
-} */
+.jumbotron {
+  color: white;
+  background-color: #388E3C;
+}
+
+.btn-primary {
+  background-color: #7C4DFF;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: rgb(81, 17, 255)
+}
+
+.high-padding-form {
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top: 3%;
+}

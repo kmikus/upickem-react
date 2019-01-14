@@ -5,19 +5,43 @@ import { Alert } from 'reactstrap';
 
 export default class RegisterPage extends React.Component {
 
-    state = {
-        displayAlert: false,
-        alertText: ""
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            alertVisible: false,
+            alertText: ""
+        }
+
+        this.dismissAlert = this.dismissAlert.bind(this);
+        this.showAlert = this.showAlert.bind(this);
+    }
+
+    dismissAlert() {
+        this.setState({ alertVisible: false });
+    }
+
+    showAlert(message) {
+        this.setState({
+            alertVisible: true,
+            alertText: message
+        });
     }
 
     render() {
         return (
             <div>
                 <LoginHeading />
-                <div className="container">
-                {/* TODO work on this conditionally */}
-                    <Alert color="primary">Hey</Alert>
-                    <RegisterForm />
+                <div className="container high-padding-form">
+                    {/* TODO work on this conditionally */}
+                    <Alert
+                        color="danger"
+                        isOpen={this.state.alertVisible}
+                        toggle={this.dismissAlert}
+                    >
+                        {this.state.alertText}
+                    </Alert>
+                    <RegisterForm showAlert={this.showAlert} />
                 </div>
             </div>
         );
@@ -33,15 +57,11 @@ class RegisterForm extends React.Component {
         super(props);
 
         this.state = {
-            formData: {
-                firstName: "",
-                lastName: "",
-                email: "",
-                username: "",
-                password: "",
-            }
-
-
+            firstName: "",
+            lastName: "",
+            email: "",
+            username: "",
+            password: "",
         };
 
         this.register = this.register.bind(this);
@@ -49,13 +69,25 @@ class RegisterForm extends React.Component {
 
     register(event) {
         event.preventDefault();
-        API.register(...Object.values(this.state.formData)).then(response => {
-            if (response.data.success) {
-                // redirect to login, show success message
-            } else {
-                // show error message
-            }
-        });
+        API.register(
+            this.state.firstName, 
+            this.state.lastName, 
+            this.state.email,
+            this.state.username,
+            this.state.password
+            ).then(
+                response => {
+                    if (response.data.success) {
+                        window.location.href="/login"
+                    } else {
+                        console.log('hello');
+                    }
+                },
+                failed => {
+                    // TODO customize the error message
+                    this.props.showAlert("Error occurred during registration");
+                }
+        );
     };
 
     render() {

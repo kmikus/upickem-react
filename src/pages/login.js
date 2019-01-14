@@ -7,7 +7,7 @@ const LoginPage = (props) => {
   return (
     <div>
       <LoginHeading />
-      <div className="container">
+      <div className="container high-padding-form">
         <LoginForm />
       </div>
     </div>
