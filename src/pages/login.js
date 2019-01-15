@@ -1,34 +1,70 @@
 import React from 'react';
 import '../App.css';
 import API from '../util/API';
-import LoginHeading from '../components/LoginHeading'
+import RegisterPage from './Register';
+import {Alert} from 'reactstrap';
 
-const LoginPage = (props) => {
-  return (
-    <div>
-      <LoginHeading />
-      <div className="container high-padding-form">
-        <LoginForm />
+class LoginPage extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state={
+      content: <LoginForm showAlert={this.showAlert} openRegistrationForm={this.openRegistrationForm} />,
+      alertVisible: false,
+      alertMessage: "",
+      alertType: "info"
+    }
+
+    this.openRegistrationForm = this.openRegistrationForm.bind(this);
+    this.openLoginForm = this.openLoginForm.bind(this);
+    this.showAlert = this.showAlert.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  openRegistrationForm = () => {
+    this.setState({content: <RegisterPage openLoginForm={this.openLoginForm} showAlert={this.showAlert} />});
+  }
+
+  openLoginForm = () => {
+    this.setState({content: <LoginForm showAlert={this.showAlert} openRegistrationForm={this.openRegistrationForm} />})
+  }
+
+  showAlert = (type, message) => {
+    this.setState({alertVisible: true, alertMessage: message, alertType: type})
+  }
+
+  onDismiss = () => {
+    this.setState({ alertVisible: false });
+  }
+
+
+  render() {
+    return(
+      <div>
+        <Alert toggle={this.onDismiss} color={this.state.alertType} isOpen={this.state.alertVisible}>{this.state.alertMessage}</Alert>
+        {this.state.content}
       </div>
-    </div>
-  )
+    );
+  }
 }
 
 class LoginForm extends React.Component {
-  state = {
-    username: '',
-    password: ''
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: '',
+      password: ''
+    };
+
+    this.login = this.login.bind(this);
+  }
 
   login = (event) => {
     event.preventDefault();
     API.login("kevinpmikus@gmail.com", "password");
   };
-
-  register = (event) => {
-    event.preventDefault();
-    API.register("kevinpmikus@gmail.com", "kevin", "mikus", "password", "kmikus");
-  }
 
   render() {
     return (
@@ -51,7 +87,7 @@ class LoginForm extends React.Component {
           </div>
 
           <div className="form-group">
-            <a href="/register" onClick={this.goToRegisterPage} className="form-control btn btn-outline-secondary">Register</a>
+            <button onClick={this.props.openRegistrationForm} className="form-control btn btn-outline-secondary">Register</button>
           </div>
         </form>
       </div>

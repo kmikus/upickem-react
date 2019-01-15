@@ -1,7 +1,5 @@
 import React from 'react';
-import LoginHeading from '../components/LoginHeading'
 import API from '../util/API';
-import { Alert } from 'reactstrap';
 
 export default class RegisterPage extends React.Component {
 
@@ -30,20 +28,7 @@ export default class RegisterPage extends React.Component {
 
     render() {
         return (
-            <div>
-                <LoginHeading />
-                <div className="container high-padding-form">
-                    {/* TODO work on this conditionally */}
-                    <Alert
-                        color="danger"
-                        isOpen={this.state.alertVisible}
-                        toggle={this.dismissAlert}
-                    >
-                        {this.state.alertText}
-                    </Alert>
-                    <RegisterForm showAlert={this.showAlert} />
-                </div>
-            </div>
+            <RegisterForm showAlert={this.props.showAlert} openLoginForm={this.props.openLoginForm}/>
         );
     }
 
@@ -70,23 +55,25 @@ class RegisterForm extends React.Component {
     register(event) {
         event.preventDefault();
         API.register(
-            this.state.firstName, 
-            this.state.lastName, 
+            this.state.firstName,
+            this.state.lastName,
             this.state.email,
             this.state.username,
             this.state.password
-            ).then(
-                response => {
-                    if (response.data.success) {
-                        window.location.href="/login"
-                    } else {
-                        console.log('hello');
-                    }
-                },
-                failed => {
-                    // TODO customize the error message
-                    this.props.showAlert("Error occurred during registration");
+        ).then(
+            response => {
+                if (response.data.success) {
+                    // go back to login screen with gucci message
+                    this.props.showAlert("success", "Registered successfully!");
+                    this.props.openLoginForm();
+                } else {
+                    console.log('hello');
                 }
+            },
+            failed => {
+                // TODO customize the error message
+                this.props.showAlert("danger", "Error occurred during registration");
+            }
         );
     };
 
