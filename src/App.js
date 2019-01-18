@@ -6,8 +6,18 @@ import HomePage from './pages/Home/HomePage';
 import LeaguePage from './pages/League/LeaguePage';
 import LoginHeading from './pages/Login/LoginHeading';
 import { Header } from './components/Nav'
+import API from './util/API';
+import NewLeaguePage from './pages/NewLeague/NewLeaguePage';
 
 class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+      //todo remove this, for testing only
+    API.register("kevin", "mikus", "kevinpmikus2@gmail.com", "kmikus2", "GreatPassword2!")
+    API.login("kmikus2", "GreatPassword2!")
+  }
 
   render() {
 
@@ -19,6 +29,7 @@ class App extends React.Component {
           <Route path="/login" component={LoginPage} />
           <Route path="/home" component={HomePage} />
           <Route path="/league" component={LeaguePage} />
+          <Route path="/newleague" component={NewLeaguePage} />
 
         </div>
       </Router>
