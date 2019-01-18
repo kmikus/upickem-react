@@ -5,7 +5,7 @@ import LoginPage from './pages/Login/LoginPage'
 import HomePage from './pages/Home/HomePage';
 import LeaguePage from './pages/League/LeaguePage';
 import LoginHeading from './pages/Login/LoginHeading';
-import {Header} from './components/Nav'
+import { Header } from './components/Nav'
 
 class App extends React.Component {
 
@@ -17,7 +17,6 @@ class App extends React.Component {
 
           <Route path="/" exact component={HomePage} />
           <Route path="/login" component={LoginPage} />
-          {/* TODO pass funciton handler to change state to not login screen */}
           <Route path="/home" component={HomePage} />
           <Route path="/league" component={LeaguePage} />
 
@@ -39,12 +38,12 @@ class App extends React.Component {
     } else {
       content = (
         <div>
-    <Header />
-    <div style={{ paddingTop: '8vh' }} className="container">{router}</div>
-    </div>
+          <Header />
+          <div style={{ marginTop: '10vh' }} className="container">{router}</div>
+        </div>
       )
     }
-     
+
     return content;
   }
 

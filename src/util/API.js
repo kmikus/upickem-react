@@ -21,5 +21,9 @@ export default class API {
             password: password,
             username: username
         })
-    } 
+    }
+
+    static getPasswordValidatorRegex() {
+        return instance.get("auth/passwordValidatorRegex");
+    }
 }
