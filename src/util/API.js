@@ -26,4 +26,12 @@ export default class API {
     static getPasswordValidatorRegex() {
         return instance.get("auth/passwordValidatorRegex");
     }
+
+    static createNewLeague(leagueName, leagueMembersArray) {
+        return instance.post("/leagues/create", {"name": leagueName, "usernamesOrEmails": leagueMembersArray});
+    }
+
+    static verifyMember(emailOrUsername) {
+        return instance.get("/users/getUserByEmailOrUsername?emailOrUsername="+emailOrUsername)
+    }
 }
