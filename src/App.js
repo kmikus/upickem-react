@@ -15,7 +15,9 @@ class App extends React.Component {
     super(props);
 
       //todo remove this, for testing only
-    API.register("kevin", "mikus", "kevinpmikus2@gmail.com", "kmikus2", "GreatPassword2!")
+    API.register("kevin", "mikus", "kevinpmikus2@gmail.com", "kmikus2", "GreatPassword2!").catch(rejected => {
+      console.warn("Unable to register");
+    })
     API.login("kmikus2", "GreatPassword2!")
   }
 
